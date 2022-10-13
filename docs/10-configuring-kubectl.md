@@ -12,9 +12,7 @@ Generate a kubeconfig file suitable for authenticating as the `admin` user:
 
 ```
 {
-  KUBERNETES_PUBLIC_ADDRESS=$(gcloud compute addresses describe kubernetes-the-hard-way \
-    --region $(gcloud config get-value compute/region) \
-    --format 'value(address)')
+  KUBERNETES_PUBLIC_ADDRESS=<public DNS name of kubeAPI loadbalancer> (Public IP won't work)
 
   kubectl config set-cluster kubernetes-the-hard-way \
     --certificate-authority=ca.pem \
@@ -60,7 +58,6 @@ kubectl get nodes
 NAME       STATUS   ROLES    AGE     VERSION
 worker-0   Ready    <none>   2m35s   v1.21.0
 worker-1   Ready    <none>   2m35s   v1.21.0
-worker-2   Ready    <none>   2m35s   v1.21.0
 ```
 
-Next: [Provisioning Pod Network Routes](11-pod-network-routes.md)
+Next: [Deploying the DNS Cluster Add-on](11-dns-addon.md)

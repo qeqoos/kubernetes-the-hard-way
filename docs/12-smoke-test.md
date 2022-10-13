@@ -182,21 +182,6 @@ NODE_PORT=$(kubectl get svc nginx \
   --output=jsonpath='{range .spec.ports[0]}{.nodePort}')
 ```
 
-Create a firewall rule that allows remote access to the `nginx` node port:
-
-```
-gcloud compute firewall-rules create kubernetes-the-hard-way-allow-nginx-service \
-  --allow=tcp:${NODE_PORT} \
-  --network kubernetes-the-hard-way
-```
-
-Retrieve the external IP address of a worker instance:
-
-```
-EXTERNAL_IP=$(gcloud compute instances describe worker-0 \
-  --format 'value(networkInterfaces[0].accessConfigs[0].natIP)')
-```
-
 Make an HTTP request using the external IP address and the `nginx` node port:
 
 ```
@@ -217,4 +202,4 @@ ETag: "6075b537-264"
 Accept-Ranges: bytes
 ```
 
-Next: [Cleaning Up](14-cleanup.md)
+Next: [Cleaning Up](13-cleanup.md)
